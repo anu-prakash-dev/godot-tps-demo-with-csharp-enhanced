@@ -1,0 +1,32 @@
+﻿<Project Sdk="Godot.NET.Sdk/3.2.3">
+  <PropertyGroup>
+    <ProjectGuid>{2A5C3C94-5B97-4C25-9CDB-C7DC4C92DC04}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>GodotThirdPersonShooterDemoWithCSharp</RootNamespace>
+    <AssemblyName>Godot Third-Person Shooter Demo With CSharp</AssemblyName>
+    <GodotProjectGeneratorVersion>1.0.0.0</GodotProjectGeneratorVersion>
+    <TargetFramework>net472</TargetFramework>
+    <!--The following properties were overriden during migration to prevent errors.
+    Enabling them may require other manual changes to the project and its files.-->
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <Deterministic>false</Deterministic>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="door\Door.cs" />
+    <Compile Include="enemies\red_robot\RedRobot.cs" />
+    <Compile Include="level\Level.cs" />
+    <Compile Include="level\Debug.cs" />
+    <Compile Include="level\ShaderCache.cs" />
+    <Compile Include="main\Main.cs" />
+    <Compile Include="menu\Menu.cs" />
+    <Compile Include="menu\Settings.cs" />
+    <Compile Include="player\bullet\Bullet.cs" />
+    <Compile Include="player\CameraNoiseShakeEffect.cs" />
+    <Compile Include="player\PlayerEntity.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+</Project>
