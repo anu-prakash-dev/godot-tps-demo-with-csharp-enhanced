@@ -35,7 +35,7 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Player
         private const float RotationInterpolateSpeed = 10;
 
         private const float MinAirborneTime = 0.1f;
-        private const float JumpSpeed = 5;
+        private const float JumpSpeed = 7;
 
         private float _airborneTime = 100;
 
@@ -209,6 +209,8 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Player
 
                 // The animation's forward/backward axis is reversed.
                 _animationTree.Set("parameters/strafe/blend_position", new Vector2(_motion.x, -_motion.y));
+                // Strafe Faster =D
+                _animationTree.Set("parameters/strafe_scale/scale", (Input.IsActionPressed("run") ? 1.5f : 1f));
 
                 _rootMotion = _animationTree.GetRootMotionTransform();
 
@@ -257,6 +259,8 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Player
                 _animationTree.Set("parameters/state/current", 1);
                 // Blend position for walk speed based on motion.
                 _animationTree.Set("parameters/walk/blend_position", new Vector2(_motion.Length(), 0));
+                // Run Faster =D
+                _animationTree.Set("parameters/walk_scale/scale", (Input.IsActionPressed("run") ? 1.5f : 1f));
 
                 _rootMotion = _animationTree.GetRootMotionTransform();
             }
