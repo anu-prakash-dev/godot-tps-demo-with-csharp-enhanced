@@ -6,7 +6,7 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Player
 {
     public class Bullet : KinematicBody
     {
-        private const float BulletVelocity = 20f;
+        private const float BulletVelocity = 50f;
 
         public Vector3 Direction { get; set; }
 
