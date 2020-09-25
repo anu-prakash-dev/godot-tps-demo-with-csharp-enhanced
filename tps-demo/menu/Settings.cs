@@ -28,6 +28,12 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Menu
             High = 2,
         }
 
+        public enum BloomQualityEnum {
+            Disabled = 0,
+            Low = 1,
+            High = 2
+        }
+
         public enum ResolutionEnum
         {
             Res_540 = 0,
@@ -39,6 +45,7 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Menu
         public GIQualityEnum GIQuality { get; set; } = GIQualityEnum.Low;
         public AAQualityEnum AAQuality { get; set; } = AAQualityEnum.AA_2x;
         public SSAOQualityEnum SSAOQuality { get; set; } = SSAOQualityEnum.Disabled;
+        public BloomQualityEnum BloomQuality { get; set; } = BloomQualityEnum.High;
         public ResolutionEnum Resolution { get; set; } = ResolutionEnum.Native;
         public bool Fullscreen { get; set; } = true;
 
@@ -84,6 +91,12 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Menu
             if (_dict.Contains("ssao"))
                 SSAOQuality = (SSAOQualityEnum)Convert.ToInt32(_dict["ssao"]);
 
+            if (_dict.Contains("ssao"))
+                SSAOQuality = (SSAOQualityEnum)Convert.ToInt32(_dict["ssao"]);
+
+            if (_dict.Contains("bloom"))
+                BloomQuality = (BloomQualityEnum)Convert.ToInt32(_dict["bloom"]);
+
             if (_dict.Contains("resolution"))
                 Resolution = (ResolutionEnum)Convert.ToInt32(_dict["resolution"]);
 
@@ -106,6 +119,7 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Menu
                 {"gi", (int)GIQuality},
                 {"aa", (int)AAQuality},
                 {"ssao", (int)SSAOQuality},
+                {"bloom", (int)BloomQuality},
                 {"resolution", (int)Resolution},
                 {"fullscreen",  Fullscreen}
             };

@@ -38,6 +38,11 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Menu
         private Button _ssaoLow;
         private Button _ssaoDisabled;
 
+        private Control _bloomMenu;
+        private Button _bloomHigh;
+        private Button _bloomLow;
+        private Button _bloomDisabled;
+
         private Control _resolutionMenu;
         private Button _resolutionNative;
         private Button _resolution1080;
@@ -80,6 +85,11 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Menu
             _ssaoHigh = _ssaoMenu.GetNode<Button>(@"High");
             _ssaoLow = _ssaoMenu.GetNode<Button>(@"Low");
             _ssaoDisabled = _ssaoMenu.GetNode<Button>(@"Disabled");
+
+            _bloomMenu = _settingsMenu.GetNode<Control>(@"Bloom");
+            _bloomHigh = _bloomMenu.GetNode<Button>(@"High");
+            _bloomLow = _bloomMenu.GetNode<Button>(@"Low");
+            _bloomDisabled = _bloomMenu.GetNode<Button>(@"Disabled");
 
             _resolutionMenu = _settingsMenu.GetNode<Control>(@"Resolution");
             _resolutionNative = _resolutionMenu.GetNode<Button>(@"Native");
@@ -188,6 +198,13 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Menu
             else if (settings.SSAOQuality == Settings.SSAOQualityEnum.Disabled)
                 _ssaoDisabled.Pressed = true;
 
+            if (settings.BloomQuality == Settings.BloomQualityEnum.High)
+                _bloomHigh.Pressed = true;
+            else if (settings.BloomQuality == Settings.BloomQualityEnum.Low)
+                _bloomLow.Pressed = true;
+            else if (settings.BloomQuality == Settings.BloomQualityEnum.Disabled)
+                _bloomDisabled.Pressed = true;
+
             if (settings.Resolution == Settings.ResolutionEnum.Native)
                 _resolutionNative.Pressed = true;
             else if (settings.Resolution == Settings.ResolutionEnum.Res_1080)
@@ -240,6 +257,12 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Menu
             if (_ssaoDisabled.Pressed)
                 settings.SSAOQuality = Settings.SSAOQualityEnum.Disabled;
 
+            if (_bloomHigh.Pressed)
+                settings.BloomQuality = Settings.BloomQualityEnum.High;
+            else if (_bloomLow.Pressed)
+                settings.BloomQuality = Settings.BloomQualityEnum.Low;
+            else if (_bloomDisabled.Pressed)
+                settings.BloomQuality = Settings.BloomQualityEnum.Disabled;
 
             if (_resolutionNative.Pressed)
                 settings.Resolution = Settings.ResolutionEnum.Native;

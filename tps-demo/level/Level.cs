@@ -42,6 +42,22 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Level
             else
                 _worldEnvironment.Environment.SsaoEnabled = false;
 
+            if (settings.BloomQuality == Settings.BloomQualityEnum.High)
+            {
+                _worldEnvironment.Environment.GlowEnabled = true;
+                _worldEnvironment.Environment.GlowBicubicUpscale = true;
+            }
+            else if (settings.BloomQuality == Settings.BloomQualityEnum.Low)
+            {
+                _worldEnvironment.Environment.GlowEnabled = true;
+                _worldEnvironment.Environment.GlowBicubicUpscale = false;
+            }
+            else
+            {
+                _worldEnvironment.Environment.GlowEnabled = false;
+                _worldEnvironment.Environment.GlowBicubicUpscale = false;
+            }
+
             if (settings.Resolution == Settings.ResolutionEnum.Native) { }
             else if (settings.Resolution == Settings.ResolutionEnum.Res_1080)
             {
