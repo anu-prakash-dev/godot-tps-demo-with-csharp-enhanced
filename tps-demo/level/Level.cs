@@ -15,11 +15,12 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Level
         {
             SetupWorldEnvironment();
 
-            GetNode<PlayerSpawn>("PlayerSpawn").Spawn();
+            if (HasNode("PlayerSpawn")) GetNode<PlayerSpawn>("PlayerSpawn").Spawn();
         }
 
         private void SetupWorldEnvironment()
         {
+            if (!HasNode("WorldEnvironment")) return;
             _worldEnvironment = GetNode<WorldEnvironment>("WorldEnvironment");
             var settings = GetNode<Settings>("/root/Settings");
 

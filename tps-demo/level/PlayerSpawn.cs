@@ -13,6 +13,7 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Level
         {
             var player = (PlayerEntity)PlayerScene.Instance();
             player.GlobalTransform = GetChild<Position3D>(0).GlobalTransform;
+            player.CurrentPlayer = true;
             AddChild(player);
 
             player.AddChild(new PlayerController() { Name = "PlayerController" });

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prototype/kenney_prototypetextures/PNG/Dark/texture_04.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Prototype/kenney_prototypetextures/PNG/Purple/texture_01.png" type="Texture" id=5]
 [ext_resource path="res://player/Controllers/PlayerController.cs" type="Script" id=6]
 [ext_resource path="res://player/Controllers/AIController.cs" type="Script" id=7]
+[ext_resource path="res://level/Level.cs" type="Script" id=8]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -26,6 +27,7 @@ albedo_texture = ExtResource( 4 )
 albedo_texture = ExtResource( 5 )
 
 [node name="Prototype" type="Spatial"]
+script = ExtResource( 8 )
 
 [node name="Floor" type="Spatial" parent="."]
 __meta__ = {

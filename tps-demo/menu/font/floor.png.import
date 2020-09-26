@@ -2,33 +2,34 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/button_play.png-7299d4317fc52b7050bffc2828101d30.stex"
+path.s3tc="res://.import/floor.png-5db55b4246e4fe33fe6ef6d563f70562.s3tc.stex"
 metadata={
-"vram_texture": false
+"imported_formats": [ "s3tc" ],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://menu/button_play.png"
-dest_files=[ "res://.import/button_play.png-7299d4317fc52b7050bffc2828101d30.stex" ]
+source_file="res://menu/font/floor.png"
+dest_files=[ "res://.import/floor.png-5db55b4246e4fe33fe6ef6d563f70562.s3tc.stex" ]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=0
+flags/repeat=true
 flags/filter=true
-flags/mipmaps=false
+flags/mipmaps=true
 flags/anisotropic=false
-flags/srgb=2
+flags/srgb=1
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

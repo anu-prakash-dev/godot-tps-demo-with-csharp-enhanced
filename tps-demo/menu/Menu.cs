@@ -149,11 +149,10 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Menu
             loading_done(_res_loader);
         }
 
-        private void _on_play_pressed()
+        private void LoadLevel(string path)
         {
             _main.Hide();
             _loading.Show();
-            var path = "res://level/level.tscn";
 
             if (ResourceLoader.HasCached(path))
             {
@@ -165,6 +164,18 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Menu
                 _loading_thread = new Thread();
         		_loading_thread.Start(this, "interactive_load", _res_loader);
             }
+        }
+
+        private void _on_play_pressed()
+        {
+            var path = "res://level/level.tscn";
+            LoadLevel(path);
+        }
+
+        private void _on_prototype_pressed()
+        {
+            var path = "res://Prototype/Prototype.tscn";
+            LoadLevel(path);
         }
 
         private void _on_settings_pressed()
