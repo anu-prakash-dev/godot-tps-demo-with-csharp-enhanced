@@ -13,6 +13,13 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Level
 
         public override void _Ready()
         {
+            SetupWorldEnvironment();
+
+            GetNode<PlayerSpawn>("PlayerSpawn").Spawn();
+        }
+
+        private void SetupWorldEnvironment()
+        {
             _worldEnvironment = GetNode<WorldEnvironment>("WorldEnvironment");
             var settings = GetNode<Settings>("/root/Settings");
 

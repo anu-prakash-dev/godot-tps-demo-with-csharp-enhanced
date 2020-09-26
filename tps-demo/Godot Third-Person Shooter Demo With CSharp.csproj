@@ -20,6 +20,7 @@
     <Compile Include="enemies\red_robot\RedRobot.cs" />
     <Compile Include="level\Level.cs" />
     <Compile Include="level\Debug.cs" />
+    <Compile Include="level\PlayerSpawn.cs" />
     <Compile Include="level\ShaderCache.cs" />
     <Compile Include="main\Main.cs" />
     <Compile Include="menu\Menu.cs" />
