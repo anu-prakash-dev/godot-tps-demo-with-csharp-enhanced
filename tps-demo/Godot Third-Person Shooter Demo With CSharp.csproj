@@ -27,6 +27,8 @@
     <Compile Include="menu\Settings.cs" />
     <Compile Include="player\bullet\Bullet.cs" />
     <Compile Include="player\CameraNoiseShakeEffect.cs" />
+    <Compile Include="player\Controllers\AIController.cs" />
+    <Compile Include="player\Controllers\PlayerController.cs" />
     <Compile Include="player\PlayerEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

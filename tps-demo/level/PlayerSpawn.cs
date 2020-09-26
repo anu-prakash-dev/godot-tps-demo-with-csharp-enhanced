@@ -1,5 +1,6 @@
 using Godot;
 using GodotThirdPersonShooterDemoWithCSharp.Player;
+using GodotThirdPersonShooterDemoWithCSharp.Player.Controllers;
 using System;
 
 namespace GodotThirdPersonShooterDemoWithCSharp.Level
@@ -13,6 +14,8 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Level
             var player = (PlayerEntity)PlayerScene.Instance();
             player.GlobalTransform = GetChild<Position3D>(0).GlobalTransform;
             AddChild(player);
+
+            player.AddChild(new PlayerController() { Name = "PlayerController" });
         }
     }
 }
