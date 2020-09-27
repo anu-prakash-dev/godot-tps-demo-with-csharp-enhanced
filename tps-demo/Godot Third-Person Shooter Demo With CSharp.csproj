@@ -16,6 +16,8 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\StateMachine\State.cs" />
+    <Compile Include="Components\StateMachine\StateMachine.cs" />
     <Compile Include="door\Door.cs" />
     <Compile Include="enemies\red_robot\RedRobot.cs" />
     <Compile Include="level\Level.cs" />
@@ -29,6 +31,8 @@
     <Compile Include="player\CameraNoiseShakeEffect.cs" />
     <Compile Include="player\Controllers\AIController.cs" />
     <Compile Include="player\Controllers\PlayerController.cs" />
+    <Compile Include="player\Controllers\AIStates\IdleState.cs" />
+    <Compile Include="player\Controllers\AIStates\SampleState.cs" />
     <Compile Include="player\PlayerEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
