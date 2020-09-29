@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prototype/kenney_prototypetextures/PNG/Dark/texture_04.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Components/StateMachine/StateMachine.cs" type="Script" id=9]
 [ext_resource path="res://player/Controllers/AIStates/IdleState.cs" type="Script" id=10]
 [ext_resource path="res://player/Controllers/AIStates/SampleState.cs" type="Script" id=11]
+[ext_resource path="res://enemies/red_robot/red_robot.tscn" type="PackedScene" id=12]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -29,10 +30,34 @@ albedo_texture = ExtResource( 4 )
 [sub_resource type="SpatialMaterial" id=7]
 albedo_texture = ExtResource( 5 )
 
+[sub_resource type="NavigationMesh" id=8]
+vertices = PoolVector3Array( -16.5, 1.4, 0, -16.15, 1.4, 2.1, -14.75, 1.4, 2.1, -21.75, 1.4, 2.45, -20, 1.4, 2.1, -19.65, 1.4, 0, -26.3, 1.4, 3.85, -21.75, 1.4, 3.85, -21.75, 1.4, 2.45, 9.05, 1.4, -6.3, 9.05, 1.4, -10.15, 6.25, 1.4, -10.5, 6.25, 1.4, -15.4, 8.7, 1.4, -15.75, 8.35, 1.4, -20.3, -0.4, 1.4, -20.3, -26.3, 1.4, -2.45, -26.3, 1.4, 3.85, -21.75, 1.4, 2.45, -19.65, 1.4, 0, 9.05, 1.4, -6.3, 6.25, 1.4, -10.5, -0.4, 1.4, -20.3, -9.15, 1.4, -20.3, -16.5, 1.4, 0, -14.75, 1.4, 2.1, -17.9, 1.4, -20.3, -26.3, 1.4, -20.3, -26.3, 1.4, -8.4, -26.3, 1.4, -2.45, -19.65, 1.4, 0, -16.5, 1.4, 0, -9.15, 1.4, -20.3, -17.9, 1.4, -20.3, -26.3, 1.4, -8.4, 6.25, 1.4, -10.5, 6.25, 1.4, -15.4, -0.4, 1.4, -20.3, -14.75, 1.4, 2.1, 9.75, 1.4, -5.95, 9.05, 1.4, -6.3, 19.55, 1.4, -15.75, 19.9, 1.4, -10.85, 26.2, 1.4, -10.85, 26.2, 1.4, -20.3, 8.7, 1.4, -15.75, 19.55, 1.4, -15.75, 17.1, 1.4, -20.3, 8.35, 1.4, -20.3, 19.55, 1.4, -15.75, 26.2, 1.4, -20.3, 17.1, 1.4, -20.3, 7.65, 3.4, -14.35, 7.65, 3.4, -11.55, 10.45, 3.4, -11.2, 15.35, 3.4, -11.2, 18.5, 3.4, -11.55, 18.5, 3.4, -14.35, 10.45, 3.4, -11.2, 10.45, 3.4, -7.35, 15.35, 3.4, -7.35, 15.35, 3.4, -11.2, 19.55, 1.4, -10.15, 16.75, 1.4, -10.15, 16.75, 1.4, -6.3, 21.65, 1.4, 2.1, 22, 1.4, 4.9, 26.2, 1.4, 4.9, 26.2, 1.4, -3.15, 26.2, 1.4, -10.85, 19.9, 1.4, -10.85, 19.55, 1.4, -10.15, 18.5, 1.4, 2.1, 21.65, 1.4, 2.1, 26.2, 1.4, -3.15, 26.2, 1.4, -10.85, 19.55, 1.4, -10.15, 16.75, 1.4, -6.3, 16.05, 1.4, -5.95, 18.15, 1.4, 2.8, 18.5, 1.4, 2.1, 16.75, 1.4, -6.3, 16.05, 1.4, 4.55, 18.15, 1.4, 4.2, 18.15, 1.4, 2.8, 16.05, 1.4, -5.95, 9.75, 1.4, -5.95, 17.8, 1.4, 18.2, 17.8, 1.4, 9.8, 16.05, 1.4, 9.45, 9.05, 1.4, 18.2, 9.75, 1.4, -5.95, -14.75, 1.4, 2.1, -14.05, 1.4, 2.45, 9.05, 1.4, 18.2, 16.05, 1.4, 9.45, 16.05, 1.4, 4.55, 0.65, 1.4, 18.2, -14.05, 1.4, 2.45, -14.05, 1.4, 5.6, -7.75, 1.4, 18.2, 0.65, 1.4, 18.2, 16.05, 1.4, 4.55, 9.75, 1.4, -5.95, -14.05, 1.4, 5.6, -16.5, 1.4, 5.95, -16.15, 1.4, 18.2, -7.75, 1.4, 18.2, -21.4, 1.4, 5.95, -21.75, 1.4, 3.85, -26.3, 1.4, 3.85, -26.3, 1.4, 10.85, -16.5, 1.4, 5.95, -21.4, 1.4, 5.95, -26.3, 1.4, 10.85, -26.3, 1.4, 18.2, -16.15, 1.4, 18.2, 22, 1.4, 7.7, 19.9, 1.4, 8.05, 19.55, 1.4, 9.8, 26.2, 1.4, 4.9, 22, 1.4, 4.9, 22, 1.4, 7.7, 26.2, 1.4, 11.55, 26.2, 1.4, 4.9, 22, 1.4, 7.7, 19.55, 1.4, 9.8, 26.2, 1.4, 11.55, 19.55, 1.4, 9.8, 17.8, 1.4, 9.8, 17.8, 1.4, 18.2, 26.2, 1.4, 18.2 )
+polygons = [ PoolIntArray( 2, 1, 0 ), PoolIntArray( 5, 4, 3 ), PoolIntArray( 8, 7, 6 ), PoolIntArray( 11, 10, 9 ), PoolIntArray( 13, 12, 14 ), PoolIntArray( 14, 12, 15 ), PoolIntArray( 18, 17, 19 ), PoolIntArray( 19, 17, 16 ), PoolIntArray( 21, 20, 22 ), PoolIntArray( 22, 20, 23 ), PoolIntArray( 23, 20, 24 ), PoolIntArray( 24, 20, 25 ), PoolIntArray( 27, 26, 28 ), PoolIntArray( 30, 29, 31 ), PoolIntArray( 31, 29, 34 ), PoolIntArray( 31, 34, 33 ), PoolIntArray( 31, 33, 32 ), PoolIntArray( 37, 36, 35 ), PoolIntArray( 38, 40, 39 ), PoolIntArray( 42, 41, 43 ), PoolIntArray( 43, 41, 44 ), PoolIntArray( 48, 47, 45 ), PoolIntArray( 45, 47, 46 ), PoolIntArray( 50, 49, 51 ), PoolIntArray( 53, 52, 54 ), PoolIntArray( 54, 52, 55 ), PoolIntArray( 55, 52, 56 ), PoolIntArray( 56, 52, 57 ), PoolIntArray( 61, 60, 58 ), PoolIntArray( 58, 60, 59 ), PoolIntArray( 64, 63, 62 ), PoolIntArray( 66, 65, 67 ), PoolIntArray( 67, 65, 68 ), PoolIntArray( 71, 70, 69 ), PoolIntArray( 73, 72, 74 ), PoolIntArray( 74, 72, 77 ), PoolIntArray( 74, 77, 76 ), PoolIntArray( 74, 76, 75 ), PoolIntArray( 81, 80, 78 ), PoolIntArray( 78, 80, 79 ), PoolIntArray( 83, 82, 84 ), PoolIntArray( 84, 82, 85 ), PoolIntArray( 85, 82, 86 ), PoolIntArray( 88, 87, 89 ), PoolIntArray( 89, 87, 90 ), PoolIntArray( 93, 92, 91 ), PoolIntArray( 95, 94, 96 ), PoolIntArray( 96, 94, 97 ), PoolIntArray( 99, 98, 100 ), PoolIntArray( 100, 98, 101 ), PoolIntArray( 101, 98, 102 ), PoolIntArray( 102, 98, 103 ), PoolIntArray( 105, 104, 106 ), PoolIntArray( 106, 104, 107 ), PoolIntArray( 109, 108, 110 ), PoolIntArray( 110, 108, 111 ), PoolIntArray( 113, 112, 114 ), PoolIntArray( 114, 112, 115 ), PoolIntArray( 115, 112, 116 ), PoolIntArray( 119, 118, 117 ), PoolIntArray( 122, 121, 120 ), PoolIntArray( 126, 125, 123 ), PoolIntArray( 123, 125, 124 ), PoolIntArray( 128, 127, 129 ), PoolIntArray( 129, 127, 131 ), PoolIntArray( 129, 131, 130 ) ]
+geometry/parsed_geometry_type = 1
+geometry/collision_mask = 4294967295
+geometry/source_geometry_mode = 1
+geometry/source_group_name = "navmesh"
+cell/size = 0.35
+
 [node name="Prototype" type="Spatial"]
 script = ExtResource( 8 )
 
-[node name="Floor" type="Spatial" parent="."]
+[node name="MonitorOverlay" type="VBoxContainer" parent="."]
+margin_left = 65.0
+margin_top = 65.0
+margin_right = 105.0
+margin_bottom = 105.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+process = true
+physics_process = true
+static_memory = true
+
+[node name="Floor" type="Spatial" parent="." groups=[
+"navmesh",
+]]
 __meta__ = {
 "_edit_lock_": true
 }
@@ -14075,7 +14100,9 @@ __meta__ = {
 [node name="CollisionShape" type="CollisionShape" parent="Floor/MeshInstance1080/StaticBody"]
 shape = SubResource( 3 )
 
-[node name="Objects1" type="Spatial" parent="."]
+[node name="Objects1" type="Spatial" parent="." groups=[
+"navmesh",
+]]
 __meta__ = {
 "_edit_lock_": true
 }
@@ -14145,7 +14172,9 @@ __meta__ = {
 [node name="CollisionShape" type="CollisionShape" parent="Objects1/MeshInstance3/StaticBody"]
 shape = SubResource( 6 )
 
-[node name="Objects2" type="Spatial" parent="."]
+[node name="Objects2" type="Spatial" parent="." groups=[
+"navmesh",
+]]
 
 [node name="MeshInstance" type="MeshInstance" parent="Objects2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 2, 6 )
@@ -14212,6 +14241,244 @@ __meta__ = {
 [node name="CollisionShape" type="CollisionShape" parent="Objects2/MeshInstance3/StaticBody"]
 shape = SubResource( 6 )
 
+[node name="Objects3" type="Spatial" parent="." groups=[
+"navmesh",
+]]
+
+[node name="MeshInstance" type="MeshInstance" parent="Objects3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 2, -14 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody" type="StaticBody" parent="Objects3/MeshInstance"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Objects3/MeshInstance/StaticBody"]
+shape = SubResource( 6 )
+
+[node name="MeshInstance5" type="MeshInstance" parent="Objects3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 2, -14 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody" type="StaticBody" parent="Objects3/MeshInstance5"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Objects3/MeshInstance5/StaticBody"]
+shape = SubResource( 6 )
+
+[node name="MeshInstance4" type="MeshInstance" parent="Objects3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 2, -14 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody" type="StaticBody" parent="Objects3/MeshInstance4"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Objects3/MeshInstance4/StaticBody"]
+shape = SubResource( 6 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="Objects3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 2, -12 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody" type="StaticBody" parent="Objects3/MeshInstance2"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Objects3/MeshInstance2/StaticBody"]
+shape = SubResource( 6 )
+
+[node name="MeshInstance3" type="MeshInstance" parent="Objects3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 2, -12 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody" type="StaticBody" parent="Objects3/MeshInstance3"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Objects3/MeshInstance3/StaticBody"]
+shape = SubResource( 6 )
+
+[node name="MeshInstance6" type="MeshInstance" parent="Objects3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 2, -12 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody" type="StaticBody" parent="Objects3/MeshInstance6"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Objects3/MeshInstance6/StaticBody"]
+shape = SubResource( 6 )
+
+[node name="MeshInstance7" type="MeshInstance" parent="Objects3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 2, -14 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody" type="StaticBody" parent="Objects3/MeshInstance7"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Objects3/MeshInstance7/StaticBody"]
+shape = SubResource( 6 )
+
+[node name="MeshInstance8" type="MeshInstance" parent="Objects3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2, -14 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody" type="StaticBody" parent="Objects3/MeshInstance8"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Objects3/MeshInstance8/StaticBody"]
+shape = SubResource( 6 )
+
+[node name="MeshInstance9" type="MeshInstance" parent="Objects3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2, -14 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody" type="StaticBody" parent="Objects3/MeshInstance9"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Objects3/MeshInstance9/StaticBody"]
+shape = SubResource( 6 )
+
+[node name="MeshInstance10" type="MeshInstance" parent="Objects3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2, -12 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody" type="StaticBody" parent="Objects3/MeshInstance10"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Objects3/MeshInstance10/StaticBody"]
+shape = SubResource( 6 )
+
+[node name="MeshInstance11" type="MeshInstance" parent="Objects3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2, -12 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody" type="StaticBody" parent="Objects3/MeshInstance11"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Objects3/MeshInstance11/StaticBody"]
+shape = SubResource( 6 )
+
+[node name="MeshInstance12" type="MeshInstance" parent="Objects3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 2, -12 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody" type="StaticBody" parent="Objects3/MeshInstance12"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Objects3/MeshInstance12/StaticBody"]
+shape = SubResource( 6 )
+
+[node name="MeshInstance13" type="MeshInstance" parent="Objects3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 2, -10 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody" type="StaticBody" parent="Objects3/MeshInstance13"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Objects3/MeshInstance13/StaticBody"]
+shape = SubResource( 6 )
+
+[node name="MeshInstance14" type="MeshInstance" parent="Objects3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 2, -10 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody" type="StaticBody" parent="Objects3/MeshInstance14"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Objects3/MeshInstance14/StaticBody"]
+shape = SubResource( 6 )
+
+[node name="MeshInstance15" type="MeshInstance" parent="Objects3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 2, -10 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody" type="StaticBody" parent="Objects3/MeshInstance15"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Objects3/MeshInstance15/StaticBody"]
+shape = SubResource( 6 )
+
+[node name="MeshInstance16" type="MeshInstance" parent="Objects3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 2, -8 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody" type="StaticBody" parent="Objects3/MeshInstance16"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Objects3/MeshInstance16/StaticBody"]
+shape = SubResource( 6 )
+
+[node name="MeshInstance17" type="MeshInstance" parent="Objects3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 2, -8 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody" type="StaticBody" parent="Objects3/MeshInstance17"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Objects3/MeshInstance17/StaticBody"]
+shape = SubResource( 6 )
+
+[node name="MeshInstance18" type="MeshInstance" parent="Objects3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 2, -8 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody" type="StaticBody" parent="Objects3/MeshInstance18"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Objects3/MeshInstance18/StaticBody"]
+shape = SubResource( 6 )
+
 [node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 
@@ -14233,15 +14500,11 @@ script = ExtResource( 11 )
 [node name="IdleState" type="Node" parent="PlayerEnemy/AIController/StateMachine"]
 script = ExtResource( 10 )
 
-[node name="MonitorOverlay" type="VBoxContainer" parent="."]
-margin_left = 65.0
-margin_top = 65.0
-margin_right = 105.0
-margin_bottom = 105.0
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-process = true
-physics_process = true
-static_memory = true
+[node name="RedRobot" parent="." instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, -16 )
+
+[node name="Navigation" type="Navigation" parent="."]
+
+[node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="Navigation"]
+navmesh = SubResource( 8 )
+enabled = false

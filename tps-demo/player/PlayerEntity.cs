@@ -56,6 +56,7 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Player
 
         private AnimationTree _animationTree;
 
+        public Area _perceptionArea { get; private set; }
         public Spatial PlayerModel { get; private set; }
         public Position3D ShootFrom { get; private set; }
         private ColorRect _colorRect;
@@ -78,6 +79,8 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Player
         public override void _Ready()
         {
             _animationTree = GetNode<AnimationTree>("AnimationTree");
+
+            _perceptionArea = GetNode<Area>("PerceptionArea");
             PlayerModel = GetNode<Spatial>("PlayerModel");
             ShootFrom = PlayerModel.GetNode<Position3D>(@"Robot_Skeleton/Skeleton/GunBone/ShootFrom");
             _colorRect = GetNode<ColorRect>("ColorRect");
@@ -112,171 +115,6 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Player
             StartFireCooldown();
             PlaySoundEffect(PlayerEntity.PlayerSoundEffectEnum.Shoot);
         }
-
-
-        // public override void _PhysicsProcess(float delta)
-        // {
-        //     var camera_move = new Vector2(
-        //             Input.GetActionStrength("view_right") - Input.GetActionStrength("view_left"),
-        //             Input.GetActionStrength("view_up") - Input.GetActionStrength("view_down"));
-        //     var cameraSpeedThisFrame = delta * CameraControllerRotationSpeed;
-        //     if (_aiming)
-        //         cameraSpeedThisFrame *= 0.5f;
-        //     RotateCamera(camera_move * cameraSpeedThisFrame);
-
-        //     var motion_target = new Vector2(
-        //             Input.GetActionStrength("move_right") - Input.GetActionStrength("move_left"),
-        //             Input.GetActionStrength("move_back") - Input.GetActionStrength("move_forward"));
-
-        //     _motion = _motion.LinearInterpolate(motion_target, MotionInterpolateSpeed * delta);
-
-        //     var cameraBasis = _cameraRot.GlobalTransform.basis;
-        //     var cameraZ = cameraBasis.z;
-        //     var cameraX = cameraBasis.x;
-
-        //     cameraZ.y = 0f;
-        //     cameraZ = cameraZ.Normalized();
-        //     cameraX.y = 0;
-        //     cameraX = cameraX.Normalized();
-
-        //     var currentAim = Input.IsActionPressed("aim");
-
-        //     if (_aiming != currentAim)
-        //     {
-        //         _aiming = currentAim;
-        //         if (_aiming)
-        //             _cameraAnimation.Play("shoot");
-        //         else
-        //             _cameraAnimation.Play("far");
-        //     }
-
-        //     // Jump/in-air logic.
-        //     _airborneTime += delta;
-        //     if (IsOnFloor())
-        //     {
-        //         if (_airborneTime > 0.5)
-        //         {
-        //             _soundEffectLand.Play();
-        //         }
-
-        //         _airborneTime = 0;
-        //     }
-
-        //     var onAir = _airborneTime > MinAirborneTime;
-
-        //     if (!onAir && Input.IsActionJustPressed("jump"))
-        //     {
-        //         _velocity.y = JumpSpeed;
-        //         onAir = true;
-        //         // Increase airborne time so next frame on_air is still true
-        //         _airborneTime = MinAirborneTime;
-        //         SetPlayerTreeState(PlayerTreeStateEnum.JumpUp);
-        //         // _animationTree.Set("parameters/state/current", 2);
-        //         _soundEffectJump.Play();
-        //     }
-
-        //     if (onAir)
-        //     {
-        //         if (_velocity.y > 0)
-        //         SetPlayerTreeState(PlayerTreeStateEnum.JumpUp);
-        //             // _animationTree.Set("parameters/state/current", 2);
-        //         else
-        //         SetPlayerTreeState(PlayerTreeStateEnum.JumpDown);
-        //             // _animationTree.Set("parameters/state/current", 3);
-        //     }
-        //     else if (_aiming)
-        //     {
-        //         // Change state to strafe
-        //         SetPlayerTreeState(PlayerTreeStateEnum.Strafe);
-        //         // _animationTree.Set("parameters/state/current", 0);
-
-        //         // Change aim according to camera rotation.
-        //         if (_cameraXRot >= 0) // Aim up.
-        //             SetPlayerAimAmount(-_cameraXRot / Mathf.Deg2Rad(CameraXRotMax));
-        //         else
-        //             SetPlayerAimAmount(_cameraXRot / Mathf.Deg2Rad(CameraXRotMin));
-
-        //         // Convert orientation to quaternions for interpolating rotation.
-        //         var qFrom = _orientation.basis.RotationQuat();
-        //         var qTo = _cameraBase.GlobalTransform.basis.RotationQuat();
-        //         // Interpolate current rotation with desired one.
-        //         _orientation.basis = new Basis(qFrom.Slerp(qTo, delta * RotationInterpolateSpeed));
-
-        //         // The animation's forward/backward axis is reversed.
-        //         SetPlayerStrafeBlendPosition(new Vector2(_motion.x, -_motion.y));
-        //         // Strafe Faster =D
-        //         SetPlayerStrafeScale(Input.IsActionPressed("run") ? 1.5f : 1f);
-
-        //         _rootMotion = _animationTree.GetRootMotionTransform();
-
-        //         if (Input.IsActionPressed("shoot") && _fireCooldown.TimeLeft == 0)
-        //         {
-        //             var shootOrigin = _shootFrom.GlobalTransform.origin;
-
-        //             var chPos = _crosshair.RectPosition + _crosshair.RectSize * 0.5f;
-        //             var rayFrom = _cameraCamera.ProjectRayOrigin(chPos);
-        //             var rayDir = _cameraCamera.ProjectRayNormal(chPos);
-
-        //             Vector3 shootTarget;
-        //             // 0b11 -> 0b is binary, like 0x is hex; 11 means first and second bytes on.
-        //             var col = GetWorld().DirectSpaceState.IntersectRay(rayFrom, rayFrom + rayDir * 1000, new Godot.Collections.Array() { this }, 0b11);
-        //             if (col.Count == 0)
-        //                 shootTarget = rayFrom + rayDir * 1000;
-        //             else
-        //                 shootTarget = (Vector3)col["position"];
-        //             var shootDir = (shootTarget - shootOrigin).Normalized();
-
-        //             var bullet = (Bullet)BulletScene.Instance();
-        //             GetParent().AddChild(bullet);
-        //             bullet.GlobalTransform = new Transform(Basis.Identity, shootOrigin);
-        //             bullet.Direction = shootDir;
-        //             bullet.AddCollisionExceptionWith(this);
-        //             _fireCooldown.Start();
-        //             _soundEffectShoot.Play();
-        //             _cameraCamera.AddTrauma(0.35f);
-        //         }
-        //     }
-        //     else // Not in air or aiming, idle
-        //     {
-        //         // Convert orientation to quaternions for interpolating rotation
-        //         var target = cameraX * _motion.x + cameraZ * _motion.y;
-        //         if (target.Length() > 0.001)
-        //         {
-        //             var qFrom = _orientation.basis.RotationQuat();
-        //             var qTo = Transform.Identity.LookingAt(target, Vector3.Up).basis.RotationQuat();
-
-        //             _orientation.basis = new Basis(qFrom.Slerp(qTo, delta * RotationInterpolateSpeed));
-        //         }
-
-        //         // Aim to zero (no aiming while walking).
-        //         SetPlayerAimAmount(0);
-        //         // Change state to walk.
-        //         // _animationTree.Set("parameters/state/current", 1);
-        //         SetPlayerTreeState(PlayerTreeStateEnum.Walk);
-        //         // Blend position for walk speed based on motion.
-        //         SetPlayerWalkBlendPosition(new Vector2(_motion.Length(), 0));
-        //         // Run Faster =D
-        //         SetPlayerWalkScale(Input.IsActionPressed("run") ? 1.5f : 1f);
-
-        //         _rootMotion = _animationTree.GetRootMotionTransform();
-        //     }
-
-        //     // Apply root motion to orientation.
-        //     _orientation = _orientation * _rootMotion;
-
-        //     var hVelocity = _orientation.origin / delta;
-        //     _velocity.x = hVelocity.x;
-        //     _velocity.z = hVelocity.z;
-        //     _velocity += _gravity * delta;
-        //     _velocity = MoveAndSlide(_velocity, Vector3.Up);
-
-        //     _orientation.origin = new Vector3(); // Clear accumulated root motion displacement (was applied to speed).
-        //     _orientation = _orientation.Orthonormalized(); // Orthonormalize orientation.
-
-        //     var transform = _playerModel.GlobalTransform;
-        //     transform.basis = _orientation.basis;
-        //     _playerModel.GlobalTransform = transform;
-        // }
 
         public void RotateCamera(Vector2 move)
         {
@@ -344,6 +182,16 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Player
                     _cameraAnimation.Play("far");
                     break;
             }
+        }
+    
+        private void OnPerceptionArea_body_entered(Node body)
+        {
+            GD.Print($"{body.Name} entered");
+        }
+
+        private void OnPerceptionArea_body_exited(Node body)
+        {
+            GD.Print($"{body.Name} exited");
         }
     }
 }

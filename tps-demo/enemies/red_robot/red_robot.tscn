@@ -192,7 +192,7 @@ nodes/hit3/position = Vector2( 980, 240 )
 nodes/output/position = Vector2( 1180, 200 )
 nodes/state/node = SubResource( 25 )
 nodes/state/position = Vector2( 60, 100 )
-node_connections = [ "output", 0, "hit3", "state", 0, "Animation", "state", 1, "Animation 3", "state", 2, "Animation 2", "state", 3, "Animation 4", "aiming", 0, "state", "aiming", 1, "aim", "hit1", 0, "aiming", "hit1", 1, "Animation 5", "hit2", 0, "hit1", "hit2", 1, "Animation 6", "hit3", 0, "hit2", "hit3", 1, "Animation 7" ]
+node_connections = [ "output", 0, "hit3", "state", 0, "Animation", "state", 1, "Animation 3", "state", 2, "Animation 2", "state", 3, "Animation 4", "hit2", 0, "hit1", "hit2", 1, "Animation 6", "aiming", 0, "state", "aiming", 1, "aim", "hit1", 0, "aiming", "hit1", 1, "Animation 5", "hit3", 0, "hit2", "hit3", 1, "Animation 7" ]
 
 [sub_resource type="SphereShape" id=27]
 radius = 1.11815
@@ -553,7 +553,7 @@ script = ExtResource( 1 )
 bones/14/bound_children = [ NodePath("RayFrom") ]
 
 [node name="RayFrom" type="BoneAttachment" parent="RedRobotModel/Armature/Skeleton" index="4"]
-transform = Transform( -0.997803, -0.0153425, 0.0644564, -0.00332376, 0.983187, 0.182574, -0.0661739, 0.181958, -0.981077, -0.0243649, 1.95882, 0.254723 )
+transform = Transform( -0.997815, -0.065872, -0.00520098, -0.065922, 0.997774, 0.0101103, 0.00452341, 0.0104311, -0.999935, -0.137532, 2.0195, 0.185114 )
 bone_name = "CannonAnimRecoil"
 
 [node name="RayMesh" type="MeshInstance" parent="RedRobotModel/Armature/Skeleton/RayFrom"]
