@@ -273,15 +273,19 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Enemies
 
         private void ShootCheck() => _test_shoot = true;
 
-        private void _on_area_body_entered(PlayerEntity body)
+        private void _on_area_body_entered(Node body)
         {
-            _player = body;
-            _shootCountdown = ShootWait;
+            if (body is PlayerEntity player && player.CurrentPlayer)
+            {
+                _player = player;
+                _shootCountdown = ShootWait;
+            }
         }
 
-        private void _on_area_body_exited(PlayerEntity body)
+        private void _on_area_body_exited(Node body)
         {
-            _player = null;
+            if (body is PlayerEntity)
+                _player = null;
         }
     }
 }
