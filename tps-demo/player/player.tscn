@@ -131,7 +131,7 @@ y_label = "gun"
 
 [sub_resource type="AnimationNodeBlendTree" id=24]
 resource_local_to_scene = true
-graph_offset = Vector2( -589, 49 )
+graph_offset = Vector2( -769.637, -132 )
 nodes/aim/node = SubResource( 1 )
 nodes/aim/position = Vector2( 380, 120 )
 nodes/aimdown/node = SubResource( 2 )
@@ -238,7 +238,7 @@ script = ExtResource( 1 )
 transform = Transform( 0.803991, 0, 0, 0, 0.803991, 0, 0, 0, 0.803991, 0, 0, 0 )
 
 [node name="GunBone" type="BoneAttachment" parent="PlayerModel/Robot_Skeleton/Skeleton" index="5"]
-transform = Transform( 0.316503, -0.948482, -0.0169404, 0.398231, 0.148997, -0.905123, 0.861105, 0.279638, 0.424811, -0.295716, 1.08534, -0.0743588 )
+transform = Transform( 0.349511, -0.932088, -0.0956135, 0.509438, 0.274612, -0.815545, 0.786497, 0.236253, 0.570739, -0.326605, 1.08337, -0.0629287 )
 bone_name = "hand.R"
 
 [node name="ShootFrom" type="Position3D" parent="PlayerModel/Robot_Skeleton/Skeleton/GunBone"]

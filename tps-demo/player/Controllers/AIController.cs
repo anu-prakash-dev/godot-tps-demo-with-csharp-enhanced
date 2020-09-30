@@ -13,17 +13,22 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Player.Controllers
         public PlayerEntity Player { get => _player; }
 
         private PlayerEntity _player;
+        private PlayerEntity _playerTarget;
 
         private StateMachine _stateMachine;
 
         private Navigation _navigation;
 
-        public Transform Orientation { get; set; } = Transform.Identity;
+        private Transform _orientation = Transform.Identity;
+        public Transform Orientation { get => _orientation; set => _orientation = value; }
 
         private Transform _rootMotion = Transform.Identity;
         private Vector2 _motion = new Vector2();
+
         private Vector3 _velocity = new Vector3();
         private Vector3 _initialPosition;
+
+
         private Vector3 _gravity;
 
         public override void _Ready()
@@ -50,6 +55,19 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Player.Controllers
 
         public void UpdateRootMotion() => _rootMotion = _player.GetRootMotionTransform();
 
+        public bool HasPlayerTarget() => IsInstanceValid(_playerTarget);
+
+        public bool HasPlayerOnSight()
+        {
+            if (!HasPlayerTarget()) return false;
+            var rayOrigin = _player.GlobalTransform.origin;
+            var rayTo = _playerTarget.GlobalTransform.origin + Vector3.Up; // Above middle of player.
+            var col = _player.GetWorld().DirectSpaceState.IntersectRay(rayOrigin, rayTo, new Godot.Collections.Array() { _player });
+            return col.Count > 0 && col["collider"] == _playerTarget;
+        }
+
+        public PlayerEntity GetPlayerTarget() => _playerTarget;
+
         public override void _PhysicsProcess(float delta)
         {
             Orientation = Orientation * _rootMotion;
@@ -60,16 +78,14 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Player.Controllers
             _velocity += _gravity * delta;
             _velocity = _player.MoveAndSlide(_velocity, Vector3.Up);
 
-            var orientation = Orientation;
-            orientation.origin = new Vector3();
-            Orientation = orientation.Orthonormalized();
+            _orientation.origin = new Vector3(); // Clear accumulated root motion displacement (was applied to speed).
+            _orientation = _orientation.Orthonormalized(); // Orthonormalize orientation.
 
             var transform = _player.PlayerModel.GlobalTransform;
             transform.basis = Orientation.basis;
             _player.PlayerModel.GlobalTransform = transform;
         }
 
-        private PlayerEntity _playerTarget;
         private void OnPerceptionArea_body_entered(Node body)
         {
             if (body is PlayerEntity player && player.CurrentPlayer)

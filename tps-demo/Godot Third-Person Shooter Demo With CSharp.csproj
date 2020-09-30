@@ -32,6 +32,7 @@
     <Compile Include="player\Controllers\AIController.cs" />
     <Compile Include="player\Controllers\PlayerController.cs" />
     <Compile Include="player\Controllers\AIStates\IdleState.cs" />
+    <Compile Include="player\Controllers\AIStates\TargetState.cs" />
     <Compile Include="player\Controllers\AIStates\SampleState.cs" />
     <Compile Include="player\PlayerEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
