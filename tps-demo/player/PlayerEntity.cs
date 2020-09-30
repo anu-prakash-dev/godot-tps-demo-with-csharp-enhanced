@@ -51,12 +51,14 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Player
         public const float CameraXRotMax = 30;
 
         public bool CurrentPlayer { get; set; }
+        public bool PerceptionEnabled { get; set; }
 
         public float CameraXRot { get; private set; } = 0.0f;
 
         private AnimationTree _animationTree;
 
         public Area _perceptionArea { get; private set; }
+        public CollisionShape _perceptionCollisionShape { get; private set; }
         public Spatial PlayerModel { get; private set; }
         public Position3D ShootFrom { get; private set; }
         private ColorRect _colorRect;
@@ -75,12 +77,14 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Player
         private AudioStreamPlayer _soundEffectShoot;
 
         public Spatial GetPlayerModel() => GetNode<Spatial>("PlayerModel");
+        public Area GetPerceptionArea() => GetNode<Area>("PerceptionArea");
 
         public override void _Ready()
         {
             _animationTree = GetNode<AnimationTree>("AnimationTree");
 
             _perceptionArea = GetNode<Area>("PerceptionArea");
+            _perceptionCollisionShape = GetNode<CollisionShape>("PerceptionArea/CollisionShape");
             PlayerModel = GetNode<Spatial>("PlayerModel");
             ShootFrom = PlayerModel.GetNode<Position3D>(@"Robot_Skeleton/Skeleton/GunBone/ShootFrom");
             _colorRect = GetNode<ColorRect>("ColorRect");
@@ -99,6 +103,7 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Player
             _soundEffectShoot = _soundEffects.GetNode<AudioStreamPlayer>(@"Shoot");
 
             if (CurrentPlayer) Camera.Current = true;
+            if (PerceptionEnabled) EnablePerception();
         }
 
         public void Shoot(Vector3 shootTarget)
@@ -183,15 +188,11 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Player
                     break;
             }
         }
-    
-        private void OnPerceptionArea_body_entered(Node body)
-        {
-            GD.Print($"{body.Name} entered");
-        }
 
-        private void OnPerceptionArea_body_exited(Node body)
+        private void EnablePerception()
         {
-            GD.Print($"{body.Name} exited");
+            _perceptionArea.Monitoring = true;
+            _perceptionCollisionShape.Disabled = false;
         }
     }
 }

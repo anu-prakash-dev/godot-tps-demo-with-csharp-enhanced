@@ -6,6 +6,8 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Player.Controllers
 {
     public class AIController : Node
     {
+        [Export] public NodePath NavigationPath { get; set; }
+
         public const float RotationInterpolateSpeed = 10;
 
         public PlayerEntity Player { get => _player; }
@@ -13,6 +15,8 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Player.Controllers
         private PlayerEntity _player;
 
         private StateMachine _stateMachine;
+
+        private Navigation _navigation;
 
         public Transform Orientation { get; set; } = Transform.Identity;
 
@@ -25,7 +29,10 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Player.Controllers
         public override void _Ready()
         {
             _player = GetParent<PlayerEntity>();
+            _player.PerceptionEnabled = true;
+
             _stateMachine = GetNode<StateMachine>("StateMachine");
+            _navigation = GetNode<Navigation>(NavigationPath);
 
             _initialPosition = _player.Transform.origin;
             _gravity =
@@ -37,6 +44,8 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Player.Controllers
             Orientation = orientation;
 
             _player.Connect("ready", _stateMachine, "ParentReady");
+            _player.GetPerceptionArea().Connect("body_entered", this, nameof(OnPerceptionArea_body_entered));
+            _player.GetPerceptionArea().Connect("body_exited", this, nameof(OnPerceptionArea_body_exited));
         }
 
         public void UpdateRootMotion() => _rootMotion = _player.GetRootMotionTransform();
@@ -58,6 +67,23 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Player.Controllers
             var transform = _player.PlayerModel.GlobalTransform;
             transform.basis = Orientation.basis;
             _player.PlayerModel.GlobalTransform = transform;
+        }
+
+        private PlayerEntity _playerTarget;
+        private void OnPerceptionArea_body_entered(Node body)
+        {
+            if (body is PlayerEntity player && player.CurrentPlayer)
+            {
+                _playerTarget = player;
+            }
+        }
+
+        private void OnPerceptionArea_body_exited(Node body)
+        {
+            if (body == _playerTarget)
+            {
+                _playerTarget = null;
+            }
         }
     }
 }
