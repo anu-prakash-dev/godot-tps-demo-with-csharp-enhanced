@@ -9,7 +9,7 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Components.StateMachine
         [Export]
         private NodePath _entry_state = null;
 
-        State _state;
+        private State _state;
 
         public override void _Ready()
         {
@@ -44,6 +44,7 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Components.StateMachine
                 GD.PushWarning($"Invalid state {stateName}");
                 return;
             }
+            GD.Print($"TransitionTo {stateName}");
             _state?.Exit();
             _state = GetNode<State>(stateName);
             _state?.Enter(payload);

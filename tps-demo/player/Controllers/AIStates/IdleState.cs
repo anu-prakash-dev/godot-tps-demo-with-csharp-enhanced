@@ -22,7 +22,7 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Player.Controllers.AIStates
 
         public override void PhysicsProcess(float delta)
         {
-            if (_aiController.HasPlayerOnSight())
+            if (_aiController.HasPlayerOnSight(out _))
             {
                 StateMachine.TransitionTo("TargetState");
                 return;

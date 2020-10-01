@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prototype/kenney_prototypetextures/PNG/Dark/texture_04.png" type="Texture" id=2]
@@ -13,6 +13,8 @@
 [ext_resource path="res://player/Controllers/AIStates/SampleState.cs" type="Script" id=11]
 [ext_resource path="res://enemies/red_robot/red_robot.tscn" type="PackedScene" id=12]
 [ext_resource path="res://player/Controllers/AIStates/TargetState.cs" type="Script" id=13]
+[ext_resource path="res://player/Controllers/AIStates/ChaseState.cs" type="Script" id=14]
+[ext_resource path="res://player/Controllers/AIStates/MoveState.cs" type="Script" id=15]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -14481,7 +14483,7 @@ __meta__ = {
 shape = SubResource( 6 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1, -18 )
 
 [node name="PlayerController" type="Node" parent="Player"]
 script = ExtResource( 6 )
@@ -14499,11 +14501,17 @@ script = ExtResource( 9 )
 [node name="IdleState" type="Node" parent="PlayerEnemy/AIController/StateMachine"]
 script = ExtResource( 10 )
 
-[node name="SamplerState" type="Node" parent="PlayerEnemy/AIController/StateMachine"]
-script = ExtResource( 11 )
-
 [node name="TargetState" type="Node" parent="PlayerEnemy/AIController/StateMachine"]
 script = ExtResource( 13 )
+
+[node name="ChaseState" type="Node" parent="PlayerEnemy/AIController/StateMachine"]
+script = ExtResource( 14 )
+
+[node name="MoveState" type="Node" parent="PlayerEnemy/AIController/StateMachine"]
+script = ExtResource( 15 )
+
+[node name="SamplerState" type="Node" parent="PlayerEnemy/AIController/StateMachine"]
+script = ExtResource( 11 )
 
 [node name="RedRobot" parent="." instance=ExtResource( 12 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, -16 )
@@ -14512,4 +14520,3 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, -16 )
 
 [node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="Navigation"]
 navmesh = SubResource( 8 )
-enabled = false

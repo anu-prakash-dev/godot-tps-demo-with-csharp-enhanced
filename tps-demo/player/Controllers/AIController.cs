@@ -8,6 +8,7 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Player.Controllers
     {
         [Export] public NodePath NavigationPath { get; set; }
 
+        public const float MotionInterpolateSpeed = 10;
         public const float RotationInterpolateSpeed = 10;
 
         public PlayerEntity Player { get => _player; }
@@ -17,7 +18,7 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Player.Controllers
 
         private StateMachine _stateMachine;
 
-        private Navigation _navigation;
+        public Navigation Navigation { get; private set; }
 
         private Transform _orientation = Transform.Identity;
         public Transform Orientation { get => _orientation; set => _orientation = value; }
@@ -26,7 +27,7 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Player.Controllers
         private Vector2 _motion = new Vector2();
 
         private Vector3 _velocity = new Vector3();
-        private Vector3 _initialPosition;
+        public Vector3 InitialPosition { get; private set; }
 
 
         private Vector3 _gravity;
@@ -37,9 +38,9 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Player.Controllers
             _player.PerceptionEnabled = true;
 
             _stateMachine = GetNode<StateMachine>("StateMachine");
-            _navigation = GetNode<Navigation>(NavigationPath);
+            Navigation = GetNode<Navigation>(NavigationPath);
 
-            _initialPosition = _player.Transform.origin;
+            InitialPosition = _player.Transform.origin;
             _gravity =
             Convert.ToSingle(ProjectSettings.GetSetting("physics/3d/default_gravity")) *
             (Vector3)ProjectSettings.GetSetting("physics/3d/default_gravity_vector");
@@ -53,16 +54,26 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Player.Controllers
             _player.GetPerceptionArea().Connect("body_exited", this, nameof(OnPerceptionArea_body_exited));
         }
 
+        public void ShootPlayer(Vector3 shootTarget)
+        {
+            _player.Shoot(shootTarget);
+        }
+
         public void UpdateRootMotion() => _rootMotion = _player.GetRootMotionTransform();
 
         public bool HasPlayerTarget() => IsInstanceValid(_playerTarget);
 
-        public bool HasPlayerOnSight()
+        public bool HasPlayerOnSight(out Godot.Collections.Dictionary col)
         {
-            if (!HasPlayerTarget()) return false;
+            if (!HasPlayerTarget())
+            {
+                col = null;
+                return false;
+            }
+
             var rayOrigin = _player.GlobalTransform.origin;
             var rayTo = _playerTarget.GlobalTransform.origin + Vector3.Up; // Above middle of player.
-            var col = _player.GetWorld().DirectSpaceState.IntersectRay(rayOrigin, rayTo, new Godot.Collections.Array() { _player });
+            col = _player.GetWorld().DirectSpaceState.IntersectRay(rayOrigin, rayTo, new Godot.Collections.Array() { _player });
             return col.Count > 0 && col["collider"] == _playerTarget;
         }
 
