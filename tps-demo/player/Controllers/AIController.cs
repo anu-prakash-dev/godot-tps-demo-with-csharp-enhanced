@@ -72,7 +72,7 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Player.Controllers
             }
 
             var rayOrigin = _player.GlobalTransform.origin;
-            var rayTo = _playerTarget.GlobalTransform.origin + Vector3.Up; // Above middle of player.
+            var rayTo = _playerTarget.GlobalTransform.origin + Vector3.Up *1.5f; // Above middle of player.
             col = _player.GetWorld().DirectSpaceState.IntersectRay(rayOrigin, rayTo, new Godot.Collections.Array() { _player });
             return col.Count > 0 && col["collider"] == _playerTarget;
         }

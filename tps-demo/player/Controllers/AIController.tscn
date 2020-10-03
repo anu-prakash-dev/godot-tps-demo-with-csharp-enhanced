@@ -1,0 +1,31 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Components/StateMachine/StateMachine.cs" type="Script" id=1]
+[ext_resource path="res://player/Controllers/AIStates/ChaseState.cs" type="Script" id=2]
+[ext_resource path="res://player/Controllers/AIStates/IdleState.cs" type="Script" id=3]
+[ext_resource path="res://player/Controllers/AIStates/SampleState.cs" type="Script" id=4]
+[ext_resource path="res://player/Controllers/AIStates/TargetState.cs" type="Script" id=5]
+[ext_resource path="res://player/Controllers/AIController.cs" type="Script" id=6]
+[ext_resource path="res://player/Controllers/AIStates/MoveState.cs" type="Script" id=7]
+
+[node name="AIController" type="Node"]
+script = ExtResource( 6 )
+NavigationPath = NodePath("../../Navigation")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 1 )
+
+[node name="IdleState" type="Node" parent="StateMachine"]
+script = ExtResource( 3 )
+
+[node name="TargetState" type="Node" parent="StateMachine"]
+script = ExtResource( 5 )
+
+[node name="ChaseState" type="Node" parent="StateMachine"]
+script = ExtResource( 2 )
+
+[node name="MoveState" type="Node" parent="StateMachine"]
+script = ExtResource( 7 )
+
+[node name="SamplerState" type="Node" parent="StateMachine"]
+script = ExtResource( 4 )
