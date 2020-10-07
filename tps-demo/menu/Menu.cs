@@ -174,6 +174,12 @@ namespace GodotThirdPersonShooterDemoWithCSharp.Menu
 
         private void _on_prototype_pressed()
         {
+            // var path = "res://Prototype/Prototype.tscn";
+            // LoadLevel(path);
+        }
+
+        private void _on_multiplayer_pressed()
+        {
             var path = "res://Prototype/Prototype.tscn";
             LoadLevel(path);
         }

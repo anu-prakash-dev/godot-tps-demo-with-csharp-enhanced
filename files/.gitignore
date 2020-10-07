@@ -1,2 +1,3 @@
 # ignoring my local files temporarily
-files/
+*.afdesign
+*.txt

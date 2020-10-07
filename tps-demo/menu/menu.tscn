@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://menu/Menu.cs" type="Script" id=1]
 [ext_resource path="res://menu/font/experiment.hdr" type="Texture" id=2]
@@ -20,6 +20,9 @@
 [ext_resource path="res://menu/assets/button_action_pressed.tres" type="StyleBox" id=18]
 [ext_resource path="res://menu/assets/button_prototype_hover.png" type="Texture" id=19]
 [ext_resource path="res://menu/assets/button_prototype.png" type="Texture" id=20]
+[ext_resource path="res://menu/assets/button_multiplayer.png" type="Texture" id=21]
+[ext_resource path="res://menu/assets/button_multiplayer_hover.png" type="Texture" id=22]
+[ext_resource path="res://menu/tps_demo_enhanced.png" type="Texture" id=23]
 
 [sub_resource type="PanoramaSky" id=1]
 panorama = ExtResource( 2 )
@@ -175,11 +178,22 @@ active = true
 parameters/Blend/blend_amount = 1.0
 
 [node name="TextureRect" type="TextureRect" parent="."]
+visible = false
 margin_left = 20.1403
 margin_top = 5.03506
 margin_right = 1044.14
 margin_bottom = 238.035
 texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+margin_left = 88.4295
+margin_top = 62.4332
+margin_right = 1243.43
+margin_bottom = 324.433
+texture = ExtResource( 23 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -208,7 +222,7 @@ __meta__ = {
 }
 
 [node name="Play" type="TextureButton" parent="UI/Main"]
-margin_right = 367.0
+margin_right = 382.0
 margin_bottom = 50.0
 texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 7 )
@@ -219,8 +233,8 @@ __meta__ = {
 
 [node name="Prototype" type="TextureButton" parent="UI/Main"]
 margin_top = 100.0
-margin_right = 367.0
-margin_bottom = 134.0
+margin_right = 382.0
+margin_bottom = 150.0
 texture_normal = ExtResource( 20 )
 texture_pressed = ExtResource( 19 )
 texture_hover = ExtResource( 19 )
@@ -228,10 +242,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Multiplayer" type="TextureButton" parent="UI/Main"]
+margin_top = 200.0
+margin_right = 382.0
+margin_bottom = 250.0
+texture_normal = ExtResource( 21 )
+texture_pressed = ExtResource( 22 )
+texture_hover = ExtResource( 22 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Settings" type="TextureButton" parent="UI/Main"]
-margin_top = 184.0
-margin_right = 367.0
-margin_bottom = 234.0
+margin_top = 300.0
+margin_right = 382.0
+margin_bottom = 350.0
 texture_normal = ExtResource( 9 )
 texture_pressed = ExtResource( 9 )
 texture_hover = ExtResource( 10 )
@@ -240,9 +265,9 @@ __meta__ = {
 }
 
 [node name="Quit" type="TextureButton" parent="UI/Main"]
-margin_top = 284.0
-margin_right = 367.0
-margin_bottom = 334.0
+margin_top = 400.0
+margin_right = 382.0
+margin_bottom = 450.0
 texture_normal = ExtResource( 11 )
 texture_pressed = ExtResource( 11 )
 texture_hover = ExtResource( 12 )
@@ -625,6 +650,7 @@ wait_time = 0.5
 one_shot = true
 [connection signal="pressed" from="UI/Main/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="UI/Main/Prototype" to="." method="_on_prototype_pressed"]
+[connection signal="pressed" from="UI/Main/Multiplayer" to="." method="_on_multiplayer_pressed"]
 [connection signal="pressed" from="UI/Main/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="UI/Main/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="UI/Settings/Actions/Apply" to="." method="_on_apply_pressed"]
