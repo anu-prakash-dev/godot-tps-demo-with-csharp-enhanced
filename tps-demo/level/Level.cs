@@ -1,8 +1,8 @@
 using Godot;
-using GodotThirdPersonShooterDemoWithCSharp.Menu;
+using GodotTPSSharpEnhanced.Menu;
 using System;
 
-namespace GodotThirdPersonShooterDemoWithCSharp.Level
+namespace GodotTPSSharpEnhanced.Level
 {
     public class Level : Spatial
     {

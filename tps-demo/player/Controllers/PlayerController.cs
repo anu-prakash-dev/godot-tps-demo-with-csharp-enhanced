@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-namespace GodotThirdPersonShooterDemoWithCSharp.Player.Controllers
+namespace GodotTPSSharpEnhanced.Player.Controllers
 {
     public class PlayerController : Node
     {

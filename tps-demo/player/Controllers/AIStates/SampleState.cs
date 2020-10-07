@@ -1,8 +1,8 @@
 using Godot;
 using Godot.Collections;
-using GodotThirdPersonShooterDemoWithCSharp.Components.StateMachine;
+using GodotTPSSharpEnhanced.Components.StateMachine;
 
-namespace GodotThirdPersonShooterDemoWithCSharp.Player.Controllers.AIStates
+namespace GodotTPSSharpEnhanced.Player.Controllers.AIStates
 {
     public class SampleState : State
     {

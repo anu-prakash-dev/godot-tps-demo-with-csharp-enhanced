@@ -1,8 +1,8 @@
 using Godot;
-using GodotThirdPersonShooterDemoWithCSharp.Player;
+using GodotTPSSharpEnhanced.Player;
 using System;
 
-namespace GodotThirdPersonShooterDemoWithCSharp.Door
+namespace GodotTPSSharpEnhanced.Door
 {
     public class Door : Area
     {

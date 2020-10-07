@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 using System;
 
-namespace GodotThirdPersonShooterDemoWithCSharp.Components.StateMachine
+namespace GodotTPSSharpEnhanced.Components.StateMachine
 {
     public class StateMachine : Node
     {

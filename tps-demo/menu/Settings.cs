@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 using System;
 
-namespace GodotThirdPersonShooterDemoWithCSharp.Menu
+namespace GodotTPSSharpEnhanced.Menu
 {
     public class Settings : Node
     {

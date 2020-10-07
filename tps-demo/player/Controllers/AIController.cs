@@ -1,8 +1,8 @@
 using Godot;
 using System;
-using GodotThirdPersonShooterDemoWithCSharp.Components.StateMachine;
+using GodotTPSSharpEnhanced.Components.StateMachine;
 
-namespace GodotThirdPersonShooterDemoWithCSharp.Player.Controllers
+namespace GodotTPSSharpEnhanced.Player.Controllers
 {
     public class AIController : Node
     {

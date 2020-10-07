@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-namespace GodotThirdPersonShooterDemoWithCSharp.Main
+namespace GodotTPSSharpEnhanced.Main
 {
     public class Main : Node
     {

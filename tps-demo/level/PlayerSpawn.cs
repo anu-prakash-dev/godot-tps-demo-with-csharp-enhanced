@@ -1,9 +1,9 @@
 using Godot;
-using GodotThirdPersonShooterDemoWithCSharp.Player;
-using GodotThirdPersonShooterDemoWithCSharp.Player.Controllers;
+using GodotTPSSharpEnhanced.Player;
+using GodotTPSSharpEnhanced.Player.Controllers;
 using System;
 
-namespace GodotThirdPersonShooterDemoWithCSharp.Level
+namespace GodotTPSSharpEnhanced.Level
 {
     public class PlayerSpawn : Spatial
     {

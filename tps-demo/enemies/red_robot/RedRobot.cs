@@ -1,8 +1,8 @@
 using Godot;
-using GodotThirdPersonShooterDemoWithCSharp.Player;
+using GodotTPSSharpEnhanced.Player;
 using System;
 
-namespace GodotThirdPersonShooterDemoWithCSharp.Enemies
+namespace GodotTPSSharpEnhanced.Enemies
 {
     public class RedRobot : KinematicBody
     {

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-namespace GodotThirdPersonShooterDemoWithCSharp.Player
+namespace GodotTPSSharpEnhanced.Player
 {
     // Temporally till it gotta fixed
     public static class BasisEx

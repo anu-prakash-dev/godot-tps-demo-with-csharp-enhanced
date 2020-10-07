@@ -1,6 +1,6 @@
 using Godot;
 
-namespace GodotThirdPersonShooterDemoWithCSharp.Level
+namespace GodotTPSSharpEnhanced.Level
 {
     public class Debug : Label
     {

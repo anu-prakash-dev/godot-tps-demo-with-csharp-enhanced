@@ -1,8 +1,8 @@
 using Godot;
-using GodotThirdPersonShooterDemoWithCSharp.Player;
+using GodotTPSSharpEnhanced.Player;
 using System;
 
-namespace GodotThirdPersonShooterDemoWithCSharp.Level
+namespace GodotTPSSharpEnhanced.Level
 {
     public class ShaderCache : Node
     {

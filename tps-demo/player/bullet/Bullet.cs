@@ -1,8 +1,8 @@
 using Godot;
-using GodotThirdPersonShooterDemoWithCSharp.Enemies;
+using GodotTPSSharpEnhanced.Enemies;
 using System;
 
-namespace GodotThirdPersonShooterDemoWithCSharp.Player
+namespace GodotTPSSharpEnhanced.Player
 {
     public class Bullet : KinematicBody
     {
