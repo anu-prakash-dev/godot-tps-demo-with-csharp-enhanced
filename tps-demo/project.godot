@@ -16,12 +16,13 @@ _global_script_class_icons={
 [application]
 
 config/name="Godot TPS Sharp Enhanced"
-run/main_scene="res://main/main.tscn"
+run/main_scene="res://menu/menu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-Settings="*res://menu/Settings.cs"
+Settings="*res://Autoloads/Settings.cs"
+Main="*res://Autoloads/Main.cs"
 
 [display]
 

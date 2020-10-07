@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 using System;
 
-namespace GodotTPSSharpEnhanced.Menu
+namespace GodotTPSSharpEnhanced.Autoloads
 {
     public class Settings : Node
     {

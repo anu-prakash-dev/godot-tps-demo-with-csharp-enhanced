@@ -1,4 +1,5 @@
 using Godot;
+using GodotTPSSharpEnhanced.Autoloads;
 using System;
 
 namespace GodotTPSSharpEnhanced.Menu
@@ -7,9 +8,6 @@ namespace GodotTPSSharpEnhanced.Menu
     {
         private ResourceInteractiveLoader _res_loader = null;
         private Thread _loading_thread = null;
-
-        [Signal] public delegate void replace_main_scene(PackedScene scene);
-        [Signal] public delegate void quit(); // Useless, but needed as there is no clean way to check if a node exposes a signal
 
         private Control _ui;
         private Control _main;
@@ -138,7 +136,7 @@ namespace GodotTPSSharpEnhanced.Menu
         private void loading_done(ResourceInteractiveLoader loader)
         {
             _loading_thread.WaitToFinish();
-            EmitSignal(nameof(replace_main_scene), loader.GetResource());
+            Main.Instance?.GoToScene((PackedScene)loader.GetResource());
             // Issue: https://github.com/godotengine/godot/issues/33809
             _res_loader.Dispose();
             _res_loader = null;
@@ -156,7 +154,7 @@ namespace GodotTPSSharpEnhanced.Menu
 
             if (ResourceLoader.HasCached(path))
             {
-                EmitSignal(nameof(replace_main_scene), ResourceLoader.Load<PackedScene>(path));
+                Main.Instance?.GoToScene(ResourceLoader.Load<PackedScene>(path));
             }
             else
             {
@@ -174,14 +172,14 @@ namespace GodotTPSSharpEnhanced.Menu
 
         private void _on_prototype_pressed()
         {
-            // var path = "res://Prototype/Prototype.tscn";
-            // LoadLevel(path);
+            var path = "res://Prototype/Prototype.tscn";
+            LoadLevel(path);
         }
 
         private void _on_multiplayer_pressed()
         {
-            var path = "res://Prototype/Prototype.tscn";
-            LoadLevel(path);
+            // var path = "res://Prototype/Prototype.tscn";
+            // LoadLevel(path);
         }
 
         private void _on_settings_pressed()

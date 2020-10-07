@@ -1,14 +1,12 @@
 using Godot;
-using GodotTPSSharpEnhanced.Menu;
+using GodotTPSSharpEnhanced.Autoloads;
+
 using System;
 
 namespace GodotTPSSharpEnhanced.Level
 {
     public class Level : Spatial
     {
-        [Signal] public delegate void replace_main_scene(PackedScene scene);
-        [Signal] public delegate void quit(); // Useless, but needed as there is no clean way to check if a node exposes a signal
-
         private WorldEnvironment _worldEnvironment;
 
         public override void _Ready()
@@ -89,7 +87,7 @@ namespace GodotTPSSharpEnhanced.Level
             if (@event.IsActionPressed("quit"))
             {
                 Input.SetMouseMode(Input.MouseMode.Visible);
-                EmitSignal(nameof(quit));
+                Main.Instance?.GoToMainMenu();
             }
         }
     }
