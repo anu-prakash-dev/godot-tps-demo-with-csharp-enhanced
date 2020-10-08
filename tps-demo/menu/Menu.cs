@@ -1,5 +1,6 @@
 using Godot;
 using GodotTPSSharpEnhanced.Autoloads;
+using GodotTPSSharpEnhanced.Network;
 using System;
 
 namespace GodotTPSSharpEnhanced.Menu
@@ -178,6 +179,7 @@ namespace GodotTPSSharpEnhanced.Menu
 
         private void _on_multiplayer_pressed()
         {
+            NetworkClient.Instance?.ConnectToServer();
             // var path = "res://Prototype/Prototype.tscn";
             // LoadLevel(path);
         }

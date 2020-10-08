@@ -23,6 +23,7 @@ config/icon="res://icon.png"
 
 Settings="*res://Autoloads/Settings.cs"
 Main="*res://Autoloads/Main.cs"
+Network="*res://Network/NetworkClient.cs"
 
 [display]
 
