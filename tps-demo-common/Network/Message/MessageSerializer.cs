@@ -1,6 +1,6 @@
 using MessagePack;
 
-namespace GodotTPSSharpCommon.Network.Common.Message
+namespace GodotTPSSharpCommon.Network.Message
 {
     public static class MessageSerializer
     {

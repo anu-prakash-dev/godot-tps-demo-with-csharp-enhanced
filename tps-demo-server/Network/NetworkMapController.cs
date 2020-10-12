@@ -1,5 +1,5 @@
 using Godot;
-using GodotTPSSharpCommon.Network.Common.Message;
+using GodotTPSSharpCommon.Network.Message;
 using GodotTPSSharpServer.Level;
 using System;
 

@@ -6,4 +6,7 @@
   <ItemGroup>
     <PackageReference Include="MessagePack" Version="2.2.60" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\tps-demo-common\Godot TPS Sharp Common.csproj" />
+  </ItemGroup>
 </Project>

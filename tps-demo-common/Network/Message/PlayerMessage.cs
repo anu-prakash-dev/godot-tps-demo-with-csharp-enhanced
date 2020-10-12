@@ -1,7 +1,7 @@
 
 using MessagePack;
 
-namespace GodotTPSSharpCommon.Network.Common.Message
+namespace GodotTPSSharpCommon.Network.Message
 {
     [MessagePackObject]
     public class PlayerMessage

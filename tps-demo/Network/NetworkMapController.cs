@@ -1,6 +1,6 @@
 using Godot;
 using GodotTPSSharpEnhanced.Level;
-using GodotTPSSharpCommon.Network.Common.Message;
+using GodotTPSSharpCommon.Network.Message;
 using System;
 
 namespace GodotTPSSharpEnhanced.Network
