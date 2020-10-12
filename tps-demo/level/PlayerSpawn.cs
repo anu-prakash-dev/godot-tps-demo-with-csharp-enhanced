@@ -18,5 +18,17 @@ namespace GodotTPSSharpEnhanced.Level
 
             player.AddChild(new PlayerController() { Name = "PlayerController" });
         }
+
+        public void AddPlayer(int playerId, bool currentPlayer)
+        {
+            var player = (PlayerEntity)PlayerScene.Instance();
+            player.Name = $"playerId";
+            player.GlobalTransform = GetChild<Position3D>(0).GlobalTransform;
+            player.CurrentPlayer = currentPlayer;
+            AddChild(player);
+
+            if (currentPlayer)
+                player.AddChild(new PlayerController() { Name = "PlayerController" });
+        }
     }
 }

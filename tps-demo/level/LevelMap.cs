@@ -1,19 +1,29 @@
 using Godot;
 using GodotTPSSharpEnhanced.Autoloads;
-
+using GodotTPSSharpEnhanced.Network;
 using System;
 
 namespace GodotTPSSharpEnhanced.Level
 {
-    public class Level : Spatial
+    public class LevelMap : Spatial
     {
         private WorldEnvironment _worldEnvironment;
+
+        public PlayerSpawn PlayerSpawn { get; private set; }
 
         public override void _Ready()
         {
             SetupWorldEnvironment();
+            PlayerSpawn = GetNode<PlayerSpawn>("PlayerSpawn");
 
-            if (HasNode("PlayerSpawn")) GetNode<PlayerSpawn>("PlayerSpawn").Spawn();
+            if (Multiplayer.HasNetworkPeer())
+            {
+                AddChild(new NetworkMapController() { Name = "NetworkMapController" });
+            }
+            else
+            {
+                PlayerSpawn.Spawn();
+            }
         }
 
         private void SetupWorldEnvironment()

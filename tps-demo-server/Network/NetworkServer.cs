@@ -1,4 +1,5 @@
 using Godot;
+using GodotTPSSharpServer.Autoloads;
 using System;
 
 namespace GodotTPSSharpServer.Network
@@ -18,14 +19,18 @@ namespace GodotTPSSharpServer.Network
             }
 
         }
+
         private void OnNetwork_peer_connected(int id)
         {
             GD.Print($"peer_connected {id}");
+            var map = Main.Instance?.AddPlayer(id);
+            RpcId(id, "LoadMap", map);
         }
 
         private void OnNetwork_peer_disconnected(int id)
         {
             GD.Print($"peer_disconnected {id}");
+            Main.Instance?.RemovePlayer(id);
         }
     }
 }

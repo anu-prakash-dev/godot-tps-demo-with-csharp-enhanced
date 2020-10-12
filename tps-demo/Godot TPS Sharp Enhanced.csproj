@@ -3,4 +3,7 @@
     <TargetFramework>net472</TargetFramework>
     <RootNamespace>GodotTPSSharpEnhanced</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="MessagePack" Version="2.2.60" />
+  </ItemGroup>
 </Project>

@@ -24,7 +24,6 @@ namespace GodotTPSSharpEnhanced.Player.Controllers
         public Transform Orientation { get => _orientation; set => _orientation = value; }
 
         private Transform _rootMotion = Transform.Identity;
-        private Vector2 _motion = new Vector2();
 
         private Vector3 _velocity = new Vector3();
         public Vector3 InitialPosition { get; private set; }

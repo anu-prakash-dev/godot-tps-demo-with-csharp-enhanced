@@ -161,7 +161,7 @@ nodes/walk/node = SubResource( 22 )
 nodes/walk/position = Vector2( -720, 40 )
 nodes/walk_scale/node = SubResource( 23 )
 nodes/walk_scale/position = Vector2( -400, 40 )
-node_connections = [ "output", 0, "eye_blend", "state", 0, "strafe_scale", "state", 1, "walk_scale", "state", 2, "jumpup", "state", 3, "jumpdown", "aim", 0, "aimdown", "aim", 1, "land", "aim", 2, "aimup", "strafe_scale", 0, "strafe", "land", 0, "state", "land", 1, "hardland", "eye_blend", 0, "aim", "eye_blend", 1, "eyes", "walk_scale", 0, "walk" ]
+node_connections = [ "output", 0, "eye_blend", "state", 0, "strafe_scale", "state", 1, "walk_scale", "state", 2, "jumpup", "state", 3, "jumpdown", "strafe_scale", 0, "strafe", "aim", 0, "aimdown", "aim", 1, "land", "aim", 2, "aimup", "land", 0, "state", "land", 1, "hardland", "eye_blend", 0, "aim", "eye_blend", 1, "eyes", "walk_scale", 0, "walk" ]
 
 [sub_resource type="CapsuleShape" id=25]
 radius = 0.5
@@ -221,7 +221,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="SphereShape" id=31]
+[sub_resource type="SphereShape" id=29]
 radius = 25.0
 
 [sub_resource type="AudioStreamRandomPitch" id=30]
@@ -238,7 +238,7 @@ script = ExtResource( 1 )
 transform = Transform( 0.803991, 0, 0, 0, 0.803991, 0, 0, 0, 0.803991, 0, 0, 0 )
 
 [node name="GunBone" type="BoneAttachment" parent="PlayerModel/Robot_Skeleton/Skeleton" index="5"]
-transform = Transform( 0.349511, -0.932088, -0.0956135, 0.509438, 0.274612, -0.815545, 0.786497, 0.236253, 0.570739, -0.326605, 1.08337, -0.0629287 )
+transform = Transform( 0.331948, -0.925774, 0.181198, 0.734003, 0.13269, -0.666157, 0.592717, 0.354048, 0.723465, -0.218722, 1.16369, -0.0430455 )
 bone_name = "hand.R"
 
 [node name="ShootFrom" type="Position3D" parent="PlayerModel/Robot_Skeleton/Skeleton/GunBone"]
@@ -302,7 +302,7 @@ monitoring = false
 monitorable = false
 
 [node name="CollisionShape" type="CollisionShape" parent="PerceptionArea"]
-shape = SubResource( 31 )
+shape = SubResource( 29 )
 disabled = true
 
 [node name="ColorRect" type="ColorRect" parent="."]

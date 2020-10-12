@@ -103,6 +103,8 @@ namespace GodotTPSSharpEnhanced.Player
             _soundEffectShoot = _soundEffects.GetNode<AudioStreamPlayer>(@"Shoot");
 
             if (CurrentPlayer) Camera.Current = true;
+            // Todo: Evaluete this next line (it remove the others players camera)
+            // else CameraBase.Free();
             if (PerceptionEnabled) EnablePerception();
         }
 

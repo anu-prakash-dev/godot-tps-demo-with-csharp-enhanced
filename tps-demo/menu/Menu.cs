@@ -106,6 +106,8 @@ namespace GodotTPSSharpEnhanced.Menu
 
             GetTree().SetScreenStretch(SceneTree.StretchMode.Mode2d, SceneTree.StretchAspect.Keep, new Vector2(1920, 1080));
             _playButton.GrabFocus();
+
+            NetworkClient.Instance?.Connect(nameof(NetworkClient.LoadMapRequested), this, nameof(OnNetworkClient_LoadMapRequested));
         }
 
         private void interactive_load(ResourceInteractiveLoader loader)
@@ -161,7 +163,7 @@ namespace GodotTPSSharpEnhanced.Menu
             {
                 _res_loader = ResourceLoader.LoadInteractive(path);
                 _loading_thread = new Thread();
-        		_loading_thread.Start(this, "interactive_load", _res_loader);
+                _loading_thread.Start(this, "interactive_load", _res_loader);
             }
         }
 
@@ -175,6 +177,19 @@ namespace GodotTPSSharpEnhanced.Menu
         {
             var path = "res://Prototype/Prototype.tscn";
             LoadLevel(path);
+        }
+
+        private void OnNetworkClient_LoadMapRequested(string map)
+        {
+            switch (map)
+            {
+                case "Prototype":
+                    LoadLevel("res://Prototype/Prototype.tscn");
+                    break;
+                case "level":
+                    LoadLevel("res://Prototype/level.tscn");
+                    break;
+            }
         }
 
         private void _on_multiplayer_pressed()

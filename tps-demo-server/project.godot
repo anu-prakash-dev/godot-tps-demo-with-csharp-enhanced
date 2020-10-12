@@ -19,6 +19,14 @@ config/name="Godot TPS Sharp Server"
 run/main_scene="res://Server.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Main="*res://Autoloads/Main.cs"
+
+[mono]
+
+debugger_agent/port=23686
+
 [rendering]
 
 quality/driver/driver_name="GLES2"

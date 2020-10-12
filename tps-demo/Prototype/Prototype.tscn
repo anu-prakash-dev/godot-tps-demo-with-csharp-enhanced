@@ -5,9 +5,9 @@
 [ext_resource path="res://addons/monitor_overlay/monitor_overlay.gd" type="Script" id=3]
 [ext_resource path="res://Prototype/kenney_prototypetextures/PNG/Orange/texture_01.png" type="Texture" id=4]
 [ext_resource path="res://Prototype/kenney_prototypetextures/PNG/Purple/texture_01.png" type="Texture" id=5]
-[ext_resource path="res://player/Controllers/PlayerController.cs" type="Script" id=6]
+[ext_resource path="res://level/PlayerSpawn.cs" type="Script" id=6]
 [ext_resource path="res://player/Controllers/AIController.tscn" type="PackedScene" id=7]
-[ext_resource path="res://level/Level.cs" type="Script" id=8]
+[ext_resource path="res://level/LevelMap.cs" type="Script" id=8]
 [ext_resource path="res://enemies/red_robot/red_robot.tscn" type="PackedScene" id=12]
 
 [sub_resource type="CubeMesh" id=1]
@@ -14476,11 +14476,11 @@ __meta__ = {
 [node name="CollisionShape" type="CollisionShape" parent="Objects3/MeshInstance18/StaticBody"]
 shape = SubResource( 6 )
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1, -18 )
-
-[node name="PlayerController" type="Node" parent="Player"]
+[node name="PlayerSpawn" type="Spatial" parent="."]
 script = ExtResource( 6 )
+
+[node name="Position3D" type="Position3D" parent="PlayerSpawn"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1, -18 )
 
 [node name="PlayerEnemy" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 6 )
@@ -14494,3 +14494,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, -16 )
 
 [node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="Navigation"]
 navmesh = SubResource( 8 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 8, 22 )
+current = true
+fov = 85.0

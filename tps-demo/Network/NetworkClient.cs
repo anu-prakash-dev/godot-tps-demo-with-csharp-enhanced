@@ -1,11 +1,14 @@
 using System;
 using Godot;
+using GodotTPSSharpEnhanced.Autoloads;
 
 namespace GodotTPSSharpEnhanced.Network
 {
     public class NetworkClient : Node
     {
         public static NetworkClient Instance { get; private set; }
+
+        [Signal] public delegate void LoadMapRequested(string map);
 
         public override void _Ready()
         {
@@ -38,6 +41,12 @@ namespace GodotTPSSharpEnhanced.Network
         private void OnServer_disconnected()
         {
             GD.Print("OnServer_disconnected");
+        }
+
+        [Puppet]
+        private void LoadMap(string map)
+        {
+            EmitSignal(nameof(LoadMapRequested), map);
         }
     }
 }
