@@ -18,14 +18,12 @@ namespace GodotTPSSharpServer.Level
 
         public void AddPlayer(int playerId)
         {
-            PlayerSpawn.Spawn(playerId);
-            // Todo: Notify _networkMapController
+            _networkMapController.AddPlayer(playerId);
         }
 
         public void RemovePlayer(int playerId)
         {
-            PlayerSpawn.Despawn(playerId);
-            // Todo: Notify _networkMapController
+            _networkMapController.RemovePlayer(playerId);
         }
     }
 }

@@ -28,6 +28,11 @@ namespace GodotTPSSharpEnhanced.Network
             }
         }
 
+        public void DisconnectFromServer()
+        {
+            GetTree().NetworkPeer = null;
+        }
+
         private void OnConnected_to_server()
         {
             GD.Print("OnConnected_to_server");
